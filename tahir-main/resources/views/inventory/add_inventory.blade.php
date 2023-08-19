@@ -38,9 +38,9 @@
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label for="inputConfirmPassword2" class="col-sm-3 col-form-label">Number Of Pieces</label>
+                        <label for="noPieces" class="col-sm-3 col-form-label">Number Of Pieces</label>
                         <div class="col-sm-9">
-                            <input  type="number" step="0.01" class="form-control" name="no_of_pieces" id="inputConfirmPassword2" placeholder="Enter Cost Pieces">
+                            <input  type="number" step="0.01" class="form-control" name="no_of_pieces" id="noPieces" placeholder="Enter Cost Pieces">
                         </div>
                     </div>
                     <div class="row mb-3">
@@ -52,7 +52,6 @@
                     <div class="row mb-3">
                         <label for="inputChoosePassword2" class="col-sm-3 col-form-label">Store Name</label>
                         <div class="col-sm-9">
-                            {{-- <input type="text" class="form-control" name="store_name" id="inputChoosePassword2" placeholder="Store Name"> --}}
                             <select class="form-select mb-3" aria-label="Default select example" name="store_name">
                                 <option selected="">Store Name</option>
                                 @foreach ($data as $item)
@@ -62,17 +61,34 @@
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label for="inputConfirmPassword2" class="col-sm-3 col-form-label">Per Piece Price</label>
+                        <label for="piecePrice" class="col-sm-3 col-form-label">Per Piece Price</label>
                         <div class="col-sm-9">
-                            <input  type="number" step="0.01" class="form-control" name="per_piece_price" id="inputConfirmPassword2" placeholder="Enter Per Piece Price">
+                            <input  type="number" step="0.01" class="form-control" name="per_piece_price" id="piecePrice" placeholder="Enter Per Piece Price">
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label for="inputConfirmPassword2" class="col-sm-3 col-form-label">Total Value</label>
+                        <label for="totalValue" class="col-sm-3 col-form-label">Total Value</label>
                         <div class="col-sm-9">
-                            <input  type="number" step="0.01" class="form-control" name="total_value" id="inputConfirmPassword2" placeholder="Enter Total Value">
+                            <input  type="number" step="0.01" class="form-control" name="total_value" id="totalValue" placeholder="Enter Total Value" readonly>
                         </div>
                     </div>
+                    <script>
+                                const no_of_pieces = document.getElementById("noPieces");
+                                const price = document.getElementById("piecePrice");
+                                const inputTotal = document.getElementById("totalValue");
+
+                                function updateTotal() {
+                                    const noPiece = parseFloat(no_of_pieces.value);
+                                    const pieceCost = parseFloat(price.value);
+                                    const total = noPiece * pieceCost;
+
+                                    inputTotal.value = total.toFixed(2); // Display with 2 decimal places
+                                }
+
+                                    no_of_pieces.addEventListener("input", updateTotal);
+                                    price.addEventListener("input", updateTotal);
+                        </script>
+
                     <div class="row">
                         <label class="col-sm-3 col-form-label"></label>
                         <div class="col-sm-9">

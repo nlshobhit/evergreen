@@ -25,17 +25,6 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="inputConfirmPassword2" class="col-sm-3 col-form-label">Select Transport Product</label>
-                            <div class="col-md-9">
-                                <select class="form-select mb-3" aria-label="Default select example" name="product_id">
-                                    <option selected="">Select Transport Product</option>
-                                    @foreach ($product as $item)
-                                    <option value="{{$item->product_name}}">{{$item->product_name}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        <div class="row mb-3">
                             <label for="inputConfirmPassword2" class="col-sm-3 col-form-label">Transport Amount</label>
                             <div class="col-sm-9">
                                 <input  type="number" step="0.01" class="form-control" name="transport_amount" id="inputConfirmPassword2" placeholder="Enter Transport Amount">
@@ -54,9 +43,14 @@
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label for="inputConfirmPassword2" class="col-sm-3 col-form-label">Product Id</label>
-                        <div class="col-sm-9">
-                            <input  type="number" step="0.01" class="form-control" name="product_id" id="inputConfirmPassword2" placeholder="Enter Id">
+                        <label for="inputConfirmPassword2" class="col-sm-3 col-form-label">Select Transport Product</label>
+                        <div class="col-md-9">
+                            <select class="form-select mb-3" aria-label="Default select example" name="product_name">
+                                <option selected="">Select Transport Product</option>
+                                @foreach ($product as $item)
+                                <option value="{{$item->product_name}}">{{$item->product_name}}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                     <div class="row">

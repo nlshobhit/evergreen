@@ -9,12 +9,11 @@
 								<thead>
 									<tr>
                                         <th>Id</th>
-										<th>Transport Type</th>
+										<th>Select Transport Type</th>
 										<th>Transport Amount</th>
 										<th>Transport Location</th>
-                                        <th>Product Name</th>
 										<th>Transport Date</th>
-                                        <th>Product Id</th>
+                                        <th>Select Transport Product</th>
                                         <th>Action</th>
 									</tr>
 								</thead>
@@ -25,9 +24,8 @@
 										<td>{{$item->transport_type}}</td>
 										<td>{{$item->transport_amount}}</td>
 										<td>{{$item->transport_location}}</td>
-                                        <td>{{$item['sale']['product_name']}}</td>
-										<td>{{\Carbon\Carbon::parse($item->date)->format('d F, Y')}}</td>
-                                        <td>{{$item->product_id}}</td>
+                                        <td>{{$item->date}}
+                                        <td>{{$item->product_name}}</td>
                                         <td>
                                             <a href="{{route('edit.transport',$item->id)}}" class="btn btn-secondary">Edit</a>
                                             <a href="{{route('delete.transport',$item->id)}}" class="btn btn-danger">Delete</a>

@@ -9,23 +9,23 @@ class Sale extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'id',
-        'customer_name',
-        'customer_number',
-        'customer_location',
-        'product_name',
-        'no_of_pieces',
-        'cost',
-        'cost_price',
-        'sold_price',
-        'profit_loss',
-        'advance_payment',
-        'pending_payment',
-        'full_name',
-        'add_incentive',
-        'percentage'
-    ];
+    // protected $fillable = [
+    //     'id',
+    //     'customer_name',
+    //     'customer_number',
+    //     'customer_location',
+    //     'product_name',
+    //     'no_of_pieces',
+    //     'cost',
+    //     'cost_price',
+    //     'sold_price',
+    //     'profit_loss',
+    //     'advance_payment',
+    //     'pending_payment',
+    //     'full_name',
+    //     'add_incentive',
+    //     'percentage'
+    // ];
 
     public function staffname()
     {

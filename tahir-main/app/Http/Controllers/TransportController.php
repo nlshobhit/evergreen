@@ -25,7 +25,7 @@ class TransportController extends Controller
             'transport_amount' => 'required|numeric',
             'transport_location' => 'required|string',
             'date' => 'required|date',
-            'product_id' => 'required'
+            'product_name' => 'required'
         ]);
 
         Transport::insert([
@@ -33,7 +33,7 @@ class TransportController extends Controller
             'transport_amount' => $request->transport_amount,
             'transport_location' => $request->transport_location,
             'date' => $request->date,
-            'product_id' => $request->product_id,
+            'product_name' => $request->product_name,
             'created_at' => Carbon::now()
         ]);
 
@@ -42,7 +42,6 @@ class TransportController extends Controller
 
     public function EditTransport($id){
         $id = Transport::findOrfail($id);
-        $product = Sale::get();
         return view('transport.edit_transport',compact('id','product'));
     }
 
@@ -53,7 +52,7 @@ class TransportController extends Controller
             'transport_amount' => $request->transport_amount,
             'transport_location' => $request->transport_location,
             'date' => $request->date,
-            'product_id' => $request->product_id,
+            'product_name' => $request->product_name,
             'updated_at' => Carbon::now()
         ]);
         return redirect()->route('all.transport');

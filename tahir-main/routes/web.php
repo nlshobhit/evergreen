@@ -47,7 +47,7 @@ Route::middleware('auth')->group(function () {
     Route::controller(SaleController::class)->group(function(){
         Route::get('/all/sale','AllSale')->name('all.sale');
         Route::get('/add/sale','AddSale')->name('add.sale');
-        Route::post('/store/sale','StoreSale')->name('store.sale');
+        Route::post('/store/sale','StoreSale1')->name('store.sale');
         Route::get('/edit/sale/{id}','EditSale')->name('edit.sale');
         Route::post('/update/sale','UpdateSale')->name('update.sale');
         Route::get('/delete/sale/{id}','DeleteSale')->name('delete.sale');
