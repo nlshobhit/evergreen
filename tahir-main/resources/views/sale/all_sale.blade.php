@@ -28,23 +28,23 @@
 								</thead>
 								<tbody>
                                     @foreach ($data as $key => $item)
-									<tr>
-                                      <td>{{$key + 1}}</td>
-                                      <td>{{$item->customer_name}}</td>
-                                      <td>{{$item->customer_number}}</td>
-                                      <td>{{$item->customer_location}}</td>
-                                      <td>{{$item->product_name}}</td>
-                                      <td>{{$item->no_of_pieces}}</td>
-                                      <td>{{$item->cost}}</td>
-                                      <td>{{$item->cost_price}}</td>
-                                      <td>{{$item->sold_price}}</td>
-                                      <td>{{$item->profit_loss}}</td>
-                                      <td>{{$item->advance_payment}}</td>
-                                      <td>{{$item->pending_payment}}</td>
-                                      <td>{{$item->full_name}}</td>
-                                      <td>{{$item->add_incentive}}</td>
-                                      <td>{{$item->percentage}}</td>
-                                      <td>
+                                        <tr>
+                                            <td>{{ $key + 1 }}</td>
+                                            <td>{{ $item->customer_name }}</td>
+                                            <td>{{ $item->customer_number }}</td>
+                                            <td>{{ $item->customer_location }}</td>
+                                            <td>{{ ltrim(implode(', ', $item->product_name), ', ') }}</td>
+                                            <td>{{ ltrim(implode(', ', $item->no_of_pieces), ', ') }}</td>
+                                            <td>{{ ltrim(implode(', ', $item->cost), ', ') }}</td>
+                                            <td>{{ $item->cost_price }}</td>
+                                            <td>{{ $item->sold_price }}</td>
+                                            <td>{{ $item->profit_loss }}</td>
+                                            <td>{{ $item->advance_payment }}</td>
+                                            <td>{{ $item->pending_payment }}</td>
+                                            <td>{{ ltrim(implode(', ', $item->full_name), ', ') }}</td>
+                                            <td>{{ ltrim(implode(', ', $item->add_incentive), ', ') }}</td>
+                                            <td>{{ ltrim(implode(', ', $item->percentage), ', ') }}</td>
+                                            <td>
                                         <a href="{{route('edit.sale',$item->id)}}" class="btn btn-secondary">Edit</a>
                                         <a href="{{route('delete.sale',$item->id)}}" class="btn btn-danger">Delete</a>
                                     </td>

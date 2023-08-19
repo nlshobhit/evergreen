@@ -16,17 +16,17 @@ return new class extends Migration
             $table->string('customer_name')->nullable();
             $table->string('customer_number')->nullable();
             $table->string('customer_location')->nullable();
-            $table->string('product_name')->nullable();
-            $table->string('no_of_pieces')->nullable();
-            $table->decimal('cost',10,2)->nullable();
+            $table->json('product_name')->nullable();
+            $table->json('no_of_pieces')->nullable();
+            $table->json('cost')->nullable();
             $table->decimal('cost_price', 10,2)->nullable();
             $table->decimal('sold_price', 10,2)->nullable();
             $table->decimal('profit_loss', 10,2)->nullable();
             $table->decimal('advance_payment', 10,2)->nullable();
             $table->decimal('pending_payment', 10,2)->nullable();
-            $table->string('full_name')->nullable();
-            $table->string('add_incentive')->nullable();
-            $table->decimal('percentage',10,2)->nullable();
+            $table->json('full_name')->nullable();
+            $table->json('add_incentive')->nullable();
+            $table->json('percentage')->nullable();
             $table->timestamps();
         });
     }

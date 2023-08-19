@@ -67,22 +67,6 @@
                                     <input type="number" class="form-control" name="cost_price" id="inputCostPrice" placeholder="Enter Amount">
                                 </div>
                             </div>
-                        {{-- <script>
-                                const no_of_pieces = document.getElementById("no_of_pieces");
-                                const cost = document.getElementById("cost");
-                                const inputPrice = document.getElementById("inputCostPrice");
-
-                                function updateTotal() {
-                                    const noPiece = parseFloat(no_of_pieces.value);
-                                    const pieceCost = parseFloat(cost.value);
-                                    const total = noPiece * pieceCost;
-
-                                    inputPrice.value = total.toFixed(2); // Display with 2 decimal places
-                                }
-
-                                    no_of_pieces.addEventListener("input", updateTotal);
-                                    cost.addEventListener("input", updateTotal);
-                        </script> --}}
 
                 <div class="row mb-3">
                 <label for="inputPrice" class="col-sm-3 col-form-label">Total Sold Price</label>
@@ -106,7 +90,7 @@
                 const soldPrice = parseFloat(inputSoldPrice.value);
                 const profitLoss = soldPrice - costPrice;
 
-                inputProfitLoss.value = profitLoss.toFixed(2); // Display with 2 decimal places
+                inputProfitLoss.value = profitLoss.toFixed(2);
             }
 
                 inputCostPrice.addEventListener("input", updateProfitLoss);
@@ -196,60 +180,6 @@
                                 }
                         });
                         </script>
-
-
-                    {{-- <div class="row mb-3">
-                        <label for="inputName" class="col-sm-3 col-form-label">Seller Name</label>
-                        <div class="col-sm-9">
-
-                            <select class="form-select mb-3" aria-label="Default select example" name="full_name">
-                                <option selected="">Seller Name</option>
-                                @foreach ($staff as $item)
-                                    <option value="{{$item->full_name}}">{{$item->full_name}}</option>
-                                @endforeach
-                            </select>
-
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <label for="inputPrice" class="col-sm-3 col-form-label">Add Incentive (%)</label>
-                        <div class="col-sm-9">
-                            <input type="number" class="form-control" name="add_incentive" id="inputAddIncentive" placeholder="Enter Percentage">
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <label for="inputPrice" class="col-sm-3 col-form-label">Percentage Amount</label>
-                        <div class="col-sm-9">
-                            <input type="number" class="form-control" name="percentage" id="inputPercentageAmount" placeholder="Calculated Amount" readonly>
-                        </div>
-                    </div>
-
-                    <script>
-                        const inputCPrice = document.getElementById("inputCostPrice");
-                        const inputSPrice = document.getElementById("inputSoldPrice");
-                        const inputAddIncentive = document.getElementById("inputAddIncentive");
-                        const inputPercentageAmount = document.getElementById("inputPercentageAmount");
-
-                        function updatePercentageAmount() {
-                            const cPrice = parseFloat(inputCPrice.value);
-                            const sPrice = parseFloat(inputSPrice.value);
-                            const incentivePercentage = parseFloat(inputAddIncentive.value);
-
-                            if (!isNaN(cPrice) && !isNaN(sPrice) && !isNaN(incentivePercentage)) {
-                                const percentageAmount = (incentivePercentage / 100) * (sPrice - cPrice);
-
-                                inputPercentageAmount.value = percentageAmount.toFixed(2); // Display with 2 decimal places
-                                console.log("percentage is "+ percentageAmount);
-                            } else {
-                                inputPercentageAmount.value = "";
-                            }
-                        }
-
-                        inputCPrice.addEventListener("input", updatePercentageAmount);
-                        inputSPrice.addEventListener("input", updatePercentageAmount);
-                        inputAddIncentive.addEventListener("input", updatePercentageAmount);
-
-                    </script> --}}
 
                     <div class="row">
                         <label class="col-sm-3 col-form-label"></label>
