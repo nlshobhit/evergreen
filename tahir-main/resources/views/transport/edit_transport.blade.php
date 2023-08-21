@@ -15,10 +15,10 @@
                         @csrf
                         <input type="hidden" name="id" value="{{$id->id}}">
                         <div class="row mb-3">
-                            <label for="inputConfirmPassword2" class="col-sm-3 col-form-label">Select Transport Type</label>
+                            <label for="inputConfirmPassword2" class="col-sm-3 col-form-label">Select Payment Type</label>
                             <div class="col-md-9">
                                 <select class="form-select mb-3" aria-label="Default select example" name="transport_type">
-                                    <option selected="">Select Transport Type</option>
+                                    <option selected="">Select Payment Type</option>
                                     <option value="cash_on_delivery">Cash On Delivery</option>
                                     <option value="upi_payments">UPI Payments</option>
                                     <option value="netbanking">InterNet Banking</option>

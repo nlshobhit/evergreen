@@ -20,7 +20,7 @@
                                     @foreach ($data as $key => $item)
 									<tr>
                                         <td>{{$key + 1}}</td>
-										<td>{{$item['returnsale']['product_name']}}</td>
+										<td>{{$item->product_name}}</td>
 										<td>{{$item->return_amount}}</td>
 										<td>{{$item->return_reason}}</td>
 										<td>{{\Carbon\Carbon::parse($item->return_date)->format('d F, Y')}}</td>

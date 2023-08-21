@@ -32,77 +32,97 @@
                         </div>
                     </div>
                     <div class="row mb-3">
-                         <label class="col-sm-3 col-form-label">Product Details</label>
-                         <table id="emptbl">
-                         <tr>
-                            <th>Product Name</th>
-                            <th>Number of Pieces</th>
-                            <th>Cost</th>
-                        </tr>
+                        <label class="col-sm-3 col-form-label">Product Details</label>
+                        <table id="productTable">
+                            <tr>
+                                <th>Product Name</th>
+                                <th>Number of Pieces</th>
+                                <th>Cost</th>
+                            </tr>
                             <tr id="rowTemplate" style="display: none;">
-                            <td><input type="text" name="product_name[]" value="" /></td>
-                            <td><input type="number" name="no_of_pieces[]" value="" /></td>
-                            <td><input type="number" name="cost[]" value="" /></td>
-                         </tr>
+                                <td><input type="text" name="product_name[]" value="" /></td>
+                                <td><input type="number" name="no_of_pieces[]" value="" onchange="updateTotalCost()" /></td>
+                                <td><input type="number" name="cost[]" value="" onchange="updateTotalCost()" /></td>
+                            </tr>
                         </table>
                         <table>
-                         <tr>
-                         <td><input type="button" value="Add Row" onclick="addRows()" /></td>
-                         </tr>
+                            <tr>
+                                <td><input type="button" value="Add Row" onclick="addRow()" /></td>
+                            </tr>
                         </table>
-                        </div>
-                        <script>
-                            function addRows(){
-                                 var table = document.getElementById('emptbl');
-                                 var rowTemplate = document.getElementById('rowTemplate');
-                                 var newRow = rowTemplate.cloneNode(true);
+                    </div>
 
-                                 newRow.style.display = '';
-                                 table.appendChild(newRow);
-                         }
-                         </script>
-                        <div class="row mb-3">
-                            <label for="inputPrice" class="col-sm-3 col-form-label">Total Cost Price</label>
-                                <div class="col-sm-9">
-                                    <input type="number" class="form-control" name="cost_price" id="inputCostPrice" placeholder="Enter Amount">
-                                </div>
-                            </div>
+                    <script>
+                        function addRow() {
+                            var table = document.getElementById('productTable');
+                            var rowTemplate = document.getElementById('rowTemplate');
+                            var newRow = rowTemplate.cloneNode(true);
 
-                <div class="row mb-3">
-                <label for="inputPrice" class="col-sm-3 col-form-label">Total Sold Price</label>
-                <div class="col-sm-9">
-                <input type="number" class="form-control" name="sold_price" id="inputSoldPrice" placeholder="Enter Amount">
-                   </div>
-                </div>
-                <div class="row mb-3">
-                <label for="inputPrice" class="col-sm-3 col-form-label">Profit And Loss</label>
-                <div class="col-sm-9">
-                <input type="number" class="form-control" name="profit_loss" id="inputProfitLoss" placeholder="Calculated Amount" readonly>
-                </div>
-                </div>
-                <script>
-                const inputCostPrice = document.getElementById("inputCostPrice");
-                const inputSoldPrice = document.getElementById("inputSoldPrice");
-                const inputProfitLoss = document.getElementById("inputProfitLoss");
+                            newRow.style.display = '';
+                            table.appendChild(newRow);
+                        }
 
-            function updateProfitLoss() {
-                const costPrice = parseFloat(inputCostPrice.value);
-                const soldPrice = parseFloat(inputSoldPrice.value);
-                const profitLoss = soldPrice - costPrice;
+                        function updateTotalCost() {
+                            var totalCost = 0;
+                            var rows = document.querySelectorAll('#productTable tr[id^="rowTemplate"]');
 
-                inputProfitLoss.value = profitLoss.toFixed(2);
-            }
+                            rows.forEach(function(row) {
+                                var piecesInput = row.querySelector('input[name^="no_of_pieces"]');
+                                var costInput = row.querySelector('input[name^="cost"]');
+                                var pieces = parseFloat(piecesInput.value);
+                                var cost = parseFloat(costInput.value);
 
-                inputCostPrice.addEventListener("input", updateProfitLoss);
-                inputSoldPrice.addEventListener("input", updateProfitLoss);
+                                if (!isNaN(pieces) && !isNaN(cost)) {
+                                    totalCost += pieces * cost;
+                                }
+                            });
 
-                </script>
+                            document.getElementById('inputCostPrice').value = totalCost;
+                        }
+                    </script>
+
                     <div class="row mb-3">
+                        <label for="inputPrice" class="col-sm-3 col-form-label">Total Cost Price</label>
+                        <div class="col-sm-9">
+                            <input type="number" class="form-control" name="cost_price" id="inputCostPrice" placeholder="Enter Amount" readonly>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label for="inputPrice" class="col-sm-3 col-form-label">Total Sold Price</label>
+                        <div class="col-sm-9">
+                            <input type="number" class="form-control" name="sold_price" id="inputSoldPrice" placeholder="Enter Amount">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="inputPrice" class="col-sm-3 col-form-label">Profit And Loss</label>
+                        <div class="col-sm-9">
+                            <input type="number" class="form-control" name="profit_loss" id="inputProfitLoss" placeholder="Calculated Amount" readonly>
+                        </div>
+                    </div>
+                        <script>
+                            const inputCostPrice = document.getElementById("inputCostPrice");
+                            const inputSoldPrice = document.getElementById("inputSoldPrice");
+                            const inputProfitLoss = document.getElementById("inputProfitLoss");
+
+                        function updateProfitLoss() {
+                            const costPrice = parseFloat(inputCostPrice.value);
+                            const soldPrice = parseFloat(inputSoldPrice.value);
+                            const profitLoss = soldPrice - costPrice;
+
+                        inputProfitLoss.value = profitLoss.toFixed(2);
+                        }
+
+                        inputCostPrice.addEventListener("input", updateProfitLoss);
+                        inputSoldPrice.addEventListener("input", updateProfitLoss);
+
+                        </script>
+                        <div class="row mb-3">
                         <label for="inputNumber" class="col-sm-3 col-form-label">Advance Payment</label>
                         <div class="col-sm-9">
                             <input type="number" class="form-control" name="advance_payment" id="inputAdvanceNumber" placeholder="Enter Amount">
                         </div>
-                    </div>
+                        </div>
                     <div class="row mb-3">
                         <label for="inputNumber" class="col-sm-3 col-form-label">Pending Payment</label>
                         <div class="col-sm-9">

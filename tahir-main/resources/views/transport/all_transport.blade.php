@@ -9,7 +9,7 @@
 								<thead>
 									<tr>
                                         <th>Id</th>
-										<th>Select Transport Type</th>
+										<th>Select Payment Type</th>
 										<th>Transport Amount</th>
 										<th>Transport Location</th>
 										<th>Transport Date</th>

@@ -23,13 +23,13 @@ class ReturnController extends Controller
 
     public function StoreReturnProduct(Request $request){
         $request->validate([
-            'sale_id' => 'required',
+            'product_name' => 'required',
             'return_amount' => 'required',
             'return_reason' => 'required',
             'return_date' =>'required'
         ]);
         Returnsale::insert([
-            'sale_id' => $request->sale_id,
+            'product_name' => $request->product_name,
             'return_amount' => $request->return_amount,
             'return_reason' => $request->return_reason,
             'return_date' => $request->return_date,
@@ -47,7 +47,7 @@ class ReturnController extends Controller
     public function UpdateReturnProduct(Request $request){
         $retun_id = $request->id;
         $data = Returnsale::findOrfail($retun_id)->update([
-            'sale_id' => $request->sale_id,
+            'product_name' => $request->product_name,
             'return_amount' => $request->return_amount,
             'return_reason' => $request->return_reason,
             'return_date' => $request->return_date,

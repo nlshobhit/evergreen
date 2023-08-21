@@ -10,12 +10,9 @@ class Returnsale extends Model
     use HasFactory;
 
     protected $fillable = [
-        'sale_id',
+        'product_name',
         'return_amount',
         'return_reason',
         'return_date'
     ];
-    public function returnsale(){
-        return $this->belongsTo(Sale::class,'sale_id','id');
-    }
 }
