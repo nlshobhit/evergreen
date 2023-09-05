@@ -5,22 +5,25 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Staff;
+use App\Models\Store;
 use Carbon\Carbon;
 
 class StaffController extends Controller
 {
     public function AllStaff(){
-        $data = Staff::get();
+        $data = Staff::select('staff.*', 'stores.store_name as store_name')->leftJoin('stores','staff.store_id','stores.id')
+        ->get();
         return view('staff.all_staff',compact('data'));
     }
 
     public function AddStaff(){
-         $data = Staff::get();
-        return view('staff.add_staff');
+         $data = Store::get();
+        return view('staff.add_staff',compact('data'));
     }
 
     public function StoreStaff(Request $request){
         $request->validate([
+            'store_name' => 'required',
             'full_name' => 'required',
             'department' => 'required',
             'date_of_joining' => 'required',
@@ -31,6 +34,7 @@ class StaffController extends Controller
             'add_incentive' => 'required'
         ]);
          Staff::insert([
+            'store_name' => $request->store_name,
             'full_name' => $request->full_name,
             'department' => $request->department,
             'date_of_joining' => $request->date_of_joining,
@@ -47,13 +51,15 @@ class StaffController extends Controller
 
     public function EditStaff($id){
         $staff_id = Staff::findOrFail($id);
-        return view('staff.edit_staff',compact('staff_id'));
+        $data=Store::get();
+        return view('staff.edit_staff',compact('staff_id','data'));
     }
 
     public function UpdateStaff(Request $request){
         $staff_id = $request->id;
 
         Staff::findOrFail($staff_id)->update([
+            'store_name' => $request->store_name,
             'full_name' => $request->full_name,
             'department' => $request->department,
             'date_of_joining' => $request->date_of_joining,
