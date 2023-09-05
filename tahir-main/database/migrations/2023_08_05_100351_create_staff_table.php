@@ -10,6 +10,7 @@ return new class extends Migration
     {
         Schema::create('staff', function (Blueprint $table) {
             $table->id();
+            $table->string('store_name')->nullable();
             $table->string('full_name')->nullable();
             $table->string('department')->nullable();
             $table->date('date_of_joining')->nullable();

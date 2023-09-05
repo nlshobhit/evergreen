@@ -13,8 +13,11 @@ return new class extends Migration
     {
         Schema::create('staff_logins', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
             $table->string('user_id');
             $table->string('password');
+            $table->string('store_name');
+            $table->string('role');
             $table->timestamps();
         });
     }

@@ -13,6 +13,17 @@
                     <hr/>
                     <form action="{{route('store.staff')}}" method="POST">
                         @csrf
+                        <div class="row mb-3">
+                            <label for="inputName" class="col-sm-3 col-form-label">Store Name</label>
+                            <div class="col-sm-9">
+                                <select class="form-select mb-3" aria-label="Default select example" name="store_name">
+                                    <option selected="">Store Name</option>
+                                    @foreach ($data as $item)
+                                    <option value="{{$item->id}}">{{$item->store_name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
                     <div class="row mb-3">
                         <label for="inputStaffName" class="col-sm-3 col-form-label">Full Name</label>
                         <div class="col-sm-9">

@@ -17,6 +17,7 @@ use App\Http\Controllers\StaffLoginController;
 use App\Http\Controllers\ValueController;
 use App\Http\Controllers\DataController;
 use App\Http\Controllers\StoreController;
+use App\Http\Controllers\Auth\RegisteredUserController;
 
 
 /*
@@ -115,8 +116,13 @@ Route::middleware('auth')->group(function () {
 
     Route::controller(StaffLoginController::class)->group(function(){
         Route::get('/add/user','AddUser')->name('add.stafflogin');
-        Route::post('/store/user','StoreUser')->name('store.stafflogin');
+        // Route::post('/store/user','StoreUser')->name('store.stafflogin');
+        Route::post('/store/user','StoreUser1')->name('store.stafflogin');
     });
+    Route::get('all/register', [RegisteredUserController::class, 'create'])
+                ->name('all.register');
+
+    Route::post('register', [RegisteredUserController::class, 'store'])->name('store.register');
 
     Route::controller(VendorController::class)->group(function(){
         Route::get('/all/vendor','AllVendor')->name('all.vendor');

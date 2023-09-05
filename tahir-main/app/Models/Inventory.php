@@ -16,7 +16,7 @@ class Inventory extends Model
         'vendor_name',
         'no_of_pieces',
         'product_dimension',
-        'store_name',
+        'store_id',
         'per_piece_price',
         'total_value',
     ];

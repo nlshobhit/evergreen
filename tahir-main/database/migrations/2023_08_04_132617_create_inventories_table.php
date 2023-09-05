@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('vendor_name')->nullable();
             $table->integer('no_of_pieces')->nullable();
             $table->decimal('product_dimension', 10, 2)->nullable();
-            $table->string('store_name')->nullable();
+            $table->string('store_id')->nullable();
             $table->decimal('per_piece_price', 10, 2)->nullable();
             $table->decimal('total_value', 10, 2)->nullable();
             $table->timestamps();

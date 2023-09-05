@@ -9,6 +9,7 @@
 								<thead>
 									<tr>
                                         <th>Id</th>
+                                        <th>Store Name</th>
 										<th>Full Name</th>
 										<th>Department</th>
 										<th>Date of Joining</th>
@@ -24,6 +25,7 @@
                                     @foreach ($data as $key => $item)
 									<tr>
                                         <td>{{$key + 1}}</td>
+                                        <td>{{$item->store_name}}</td>
 										<td>{{$item->full_name}}</td>
 										<td>{{$item->department}}</td>
 										<td>{{$item->date_of_joining}}</td>

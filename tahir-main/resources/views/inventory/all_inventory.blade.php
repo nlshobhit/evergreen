@@ -31,7 +31,7 @@
 										<td>{{$item->vendor_name}}</td>
 										<td>{{$item->no_of_pieces}}</td>
 										<td>{{$item->product_dimension}}</td>
-                                        <td>{{$item->store_name}}</td>
+                                        <td>{{$item->store_id}}</td>
                                         <td>{{$item->per_piece_price}}</td>
                                         <td>{{$item->total_value}}</td>
                                         <td>

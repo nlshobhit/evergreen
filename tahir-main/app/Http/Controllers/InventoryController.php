@@ -7,11 +7,19 @@ use Illuminate\Http\Request;
 use App\Models\Inventory;
 use App\Models\Store;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class InventoryController extends Controller
 {
     public function AllInventory(){
-        $data = Inventory::get();
+        $id = Auth::user()->id;
+        $data = User::find($id);
+        $storeId= $data->store_id;
+        $data = Inventory::select('inventories.*', 'stores.store_name as store_name')
+        ->leftJoin('stores','inventories.store_id','stores.id')
+        ->where('inventories.store_id', $storeId)
+        ->get();
         return view('inventory.all_inventory',compact('data'));
     }
 
@@ -28,7 +36,7 @@ class InventoryController extends Controller
             'vendor_name' => 'required',
             'no_of_pieces' => 'required',
             'product_dimension' => 'required',
-            'store_name' => 'required',
+            'store_id' => 'required',
             'per_piece_price' => 'required',
             'total_value' => 'required'
         ]);
@@ -39,7 +47,7 @@ class InventoryController extends Controller
             'vendor_name' => $request->vendor_name,
             'no_of_pieces' => $request->no_of_pieces,
             'product_dimension' => $request->product_dimension,
-            'store_name' => $request->store_name,
+            'store_id' => $request->store_id,
             'per_piece_price' => $request->per_piece_price,
             'total_value' => $request->total_value,
             'created_at' => Carbon::now()
@@ -50,7 +58,8 @@ class InventoryController extends Controller
 
     public function EditInventory($id){
         $inventory_id = Inventory::findOrFail($id);
-        return view('inventory.edit_inventory',compact('inventory_id'));
+        $data = Store::get();
+        return view('inventory.edit_inventory',compact('inventory_id','data'));
     }
 
     public function UpdateInventory(Request $request){
@@ -63,7 +72,7 @@ class InventoryController extends Controller
             'vendor_name' => $request->vendor_name,
             'no_of_pieces' => $request->no_of_pieces,
             'product_dimension' => $request->product_dimension,
-            'store_name' => $request->store_name,
+            'store_id' => $request->store_id,
             'per_piece_price' => $request->per_piece_price,
             'total_value' => $request->total_value,
             'updated_at'=> Carbon::now()

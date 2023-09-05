@@ -114,7 +114,7 @@
                 </li>
                 <li> <a href="{{route('all.staff')}}"><i class="bx bx-right-arrow-alt"></i>Check And Edit Staff</a>
                 </li>
-                <li> <a href="{{route('add.stafflogin')}}"><i class="bx bx-right-arrow-alt"></i>Create Staff Login</a>
+                <li> <a href="{{route('all.register')}}"><i class="bx bx-right-arrow-alt"></i>Create Staff Login</a>
                 </li>
             </ul>
         </li>

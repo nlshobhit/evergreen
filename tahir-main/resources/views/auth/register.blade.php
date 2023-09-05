@@ -18,77 +18,92 @@
     <link href="{{asset('backend/assets/css/bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{asset('backend/assets/css/app.css')}}" rel="stylesheet">
     <link href="{{asset('backend/assets/css/icons.css')}}" rel="stylesheet">
-    <title>Register</title>
+    <title></title>
 </head>
 
 <body class="bg-login">
-    <!--wrapper-->
-    <div class="wrapper">
-        <div class="d-flex align-items-center justify-content-center my-5 my-lg-0">
-            <div class="container">
-                <div class="row row-cols-1 row-cols-lg-2 row-cols-xl-2">
-                    <div class="col mx-auto">
-                        <div class="my-4 text-center">
-                            <h3 class="text-success text-center">Evergreen Furniture</h3>
+    @extends('admin.master')
+@section('content')
+<div class="row">
+    <div class="col-xl-12 mx-auto">
+        <div class="card border-top border-0 border-4 border-info">
+            <div class="card-body">
+                <div class="border p-4 rounded">
+                    <div class="card-title d-flex align-items-center">
+                        <div><i class="bx bxs-user me-1 font-22 text-info"></i>
                         </div>
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="border p-4 rounded">
-                                    <div class="text-center">
-                                        <h3 class="">Sign Up</h3>
-                                        <p>Already have an account? <a href="{{route('login')}}">Sign in here</a>
-                                        </p>
-                                    </div>
-                                    <div class="form-body">
-                                        <form class="row g-3" method="POST" action="{{ route('register') }}">
-                                            @csrf
-                                            <div class="col-12">
-                                                <label for="inputEmailAddress" class="form-label">Name</label>
-                                                <input type="text" name="name" class="form-control" id="name"
-                                                    placeholder="Enter Your Name">
-                                            </div>
-                                            <div class="col-12">
-                                                <label for="inputEmailAddress" class="form-label">Email Address</label>
-                                                <input type="email" name="email" class="form-control" id="email"
-                                                    placeholder="Enetr your E-mail Address">
-                                            </div>
-                                            <div class="col-12">
-                                                <label for="inputChoosePassword" class="form-label">Password</label>
-                                                <div class="input-group" id="show_hide_password">
-                                                    <input type="password" name="password" class="form-control border-end-0"
-                                                        id="password" value=""
-                                                        placeholder="Enter Password"> <a href="javascript:;"
-                                                        class="input-group-text bg-transparent"><i
-                                                            class='bx bx-hide'></i></a>
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <label for="inputChoosePassword1" class="form-label">Confirm Password</label>
-                                                <div class="input-group" id="show_hide_password1">
-                                                    <input type="password" name="password_confirmation" class="form-control border-end-0"
-                                                        id="password_confirmation" value=""
-                                                        placeholder="Enter Confirmation Password"> <a href="javascript:;"
-                                                        class="input-group-text bg-transparent"><i
-                                                            class='bx bx-hide'></i></a>
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="d-grid">
-                                                    <button type="submit" class="btn btn-primary"><i
-                                                            class='bx bx-user'></i>Sign up</button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
+                        <h5 class="mb-0 text-info">Staff Login</h5>
+                    </div>
+                    <hr/>
+                    <form class="row g-3" method="POST" action="{{ route('store.register') }}">
+                        @csrf
+                        <div class="row mb-3">
+                            <label for="inputEmailAddress" class="form-label">Name</label>
+                            <input type="text" name="name" class="form-control" id="name" required
+                                placeholder="Enter Your Name">
+                        </div>
+                        <div class="row mb-3">
+                            <label for="inputEmailAddress" class="form-label">Email Address</label>
+                            <input type="email" name="email" class="form-control" id="email" required
+                                placeholder="Enetr your E-mail Address">
+                        </div>
+                        <div class="row mb-3">
+                            <label for="inputChoosePassword" class="form-label">Password</label>
+                            <div class="input-group" id="show_hide_password">
+                                <input type="password" name="password" class="form-control border-end-0" required
+                                    id="password" value=""
+                                    placeholder="Enter Password"> <a href="javascript:;"
+                                    class="input-group-text bg-transparent"><i
+                                        class='bx bx-hide'></i></a>
                             </div>
                         </div>
-                    </div>
+                        <div class="row mb-3">
+                            <label for="inputChoosePassword1" class="form-label" >Confirm Password</label>
+                            <div class="input-group" id="show_hide_password1">
+                                <input type="password" name="password_confirmation" class="form-control border-end-0" required
+                                    id="password_confirmation" value=""
+                                    placeholder="Enter Confirmation Password"> <a href="javascript:;"
+                                    class="input-group-text bg-transparent"><i
+                                        class='bx bx-hide'></i></a>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="inputChoosePassword2" class="col-sm-3 col-form-label">Store Name</label>
+                            <div class="col-sm-9">
+                                <select class="form-select mb-3" aria-label="Default select example" name="store_id" required>
+                                    <option selected="">Store Name</option>
+                                    @foreach ($data as $item)
+                                    <option value="{{$item->id}}">{{$item->store_name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="inputRole" class="col-sm-3 col-form-label">Role</label>
+                            <div class="col-sm-9">
+                                <select class="form-select mb-3" aria-label="Default select example" name="role_id" required>
+                                    <option selected="">Define Role</option>
+                                    @foreach ($role as $item)
+                                    <option value="{{$item->id}}">{{$item->name}}</option>
+                                    @endforeach
+                                  </select>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-3 col-form-label"></label>
+                            <div class="col-sm-9">
+                                <button type="submit" class="btn btn-info px-5">Add Staff</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-                <!--end row-->
             </div>
         </div>
     </div>
+</div>
+<!--end row-->
+@endsection
+
     <!--end wrapper-->
     <!-- Bootstrap JS -->
     <script src="{{asset('backend/assets/js/bootstrap.bundle.min.js')}}"></script>
