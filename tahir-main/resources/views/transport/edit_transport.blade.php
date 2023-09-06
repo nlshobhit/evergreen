@@ -46,7 +46,7 @@
                     <div class="row mb-3">
                         <label for="inputConfirmPassword2" class="col-sm-3 col-form-label">Select Transport Product</label>
                         <div class="col-md-9">
-                            <select class="form-select mb-3" aria-label="Default select example" name="product_name">
+                            <select class="form-select mb-3" aria-label="Default select example" value="{{$id->product_name}}" name="product_name">
                                 <option selected="">Select Transport Product</option>
                                 @foreach ($product as $item)
                                 <option value="{{$item->id}}">{{$item->product_name}}</option>

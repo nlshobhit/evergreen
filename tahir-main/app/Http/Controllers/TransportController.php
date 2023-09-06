@@ -42,6 +42,7 @@ class TransportController extends Controller
 
     public function EditTransport($id){
         $id = Transport::findOrfail($id);
+        $product = Inventory::get();
         return view('transport.edit_transport',compact('id','product'));
     }
 

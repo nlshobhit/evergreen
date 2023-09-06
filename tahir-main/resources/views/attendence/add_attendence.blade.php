@@ -19,7 +19,7 @@
                                 <select class="form-select mb-3" aria-label="Default select example" name="full_name">
                                     <option selected="">Staff Name</option>
                                     @foreach ($data as $item)
-                                    <option value="{{$item->full_name}}">{{$item->full_name}}</option>
+                                    <option value="{{$item->id}}">{{$item->full_name}}</option>
                                     @endforeach
                                 </select>
                             </div>

@@ -128,6 +128,8 @@
             <ul>
                 <li> <a href="{{route('add.vendor')}}"><i class="bx bx-right-arrow-alt"></i>Add Vendor</a>
                 </li>
+                <li> <a href="{{route('all.vendor')}}"><i class="bx bx-right-arrow-alt"></i>View Vendor</a>
+                </li>
                 <li> <a href="{{route('add.item')}}"><i class="bx bx-right-arrow-alt"></i>Vendor Supply</a>
                 </li>
                 <li> <a href="{{route('add.value')}}"><i class="bx bx-right-arrow-alt"></i>Payment's Add/View</a>

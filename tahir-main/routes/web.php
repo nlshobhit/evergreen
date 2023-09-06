@@ -72,7 +72,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/add/attendence','AddAttendence')->name('add.attendence');
         Route::get('/all/attendence','AllAttendence')->name('all.attendence');
         Route::post('/store/attendence','StoreAttendence')->name('store.attendence');
-        Route::get('/edit/attendence','EditAttendence')->name('edit.attendence');
+        Route::get('/edit/attendence/{id}','EditAttendence')->name('edit.attendence');
         Route::post('/update/attendence','UpdateAttendence')->name('update.attendence');
         Route::get('/delete/attendence/{id}','DeleteAttendence')->name('delete.attendence');
 
@@ -152,9 +152,9 @@ Route::middleware('auth')->group(function () {
         Route::get('/add/store','AddStore')->name('add.store');
         Route::get('/all/store','AllStore')->name('all.store');
         Route::post('/store/store','Store')->name('store.store');
-        Route::post('/adit/store','EditStore')->name('edit.store');
+        Route::get('/adit/store/{id}','EditStore')->name('edit.store');
         Route::post('/update/store','UpdateStore')->name('update.store');
-        Route::post('/delete/store','DeleteStore')->name('delete.store');
+        Route::get('/delete/store/{id}','DeleteStore')->name('delete.store');
    });
 
 

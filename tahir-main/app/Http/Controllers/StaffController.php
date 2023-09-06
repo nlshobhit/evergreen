@@ -27,7 +27,7 @@ class StaffController extends Controller
             'full_name' => 'required',
             'department' => 'required',
             'date_of_joining' => 'required',
-            'mobile_number' => 'required',
+            'mobile_number' => ['required','string','max:11'],
             'address' => 'required',
             'salary' => 'required',
             'shift_timing' => 'required',

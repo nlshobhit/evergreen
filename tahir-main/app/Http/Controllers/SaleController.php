@@ -27,7 +27,7 @@ class SaleController extends Controller
       try{
         $request->validate([
         'customer_name' => 'required',
-        'customer_number' => 'required',
+        'customer_number' => ['required','string','max:11'],
         'customer_location' => 'required',
         'product_name' => 'required',
         'no_of_pieces' => 'required',
@@ -100,7 +100,8 @@ class SaleController extends Controller
 
     public function EditSale($id){
         $sale_id = Sale::findOrFail($id);
-        return view('sale.edit_sale',compact('sale_id'));
+        $staff = Staff::get();
+        return view('sale.edit_sale',compact('sale_id','staff'));
     }
 
     public function UpdateSale(Request $request){

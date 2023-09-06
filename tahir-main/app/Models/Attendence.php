@@ -15,8 +15,8 @@ class Attendence extends Model
         'attendence_date'
     ];
 
-    public function staffname()
-    {
-        return $this->belongsTo(Staff::class, 'full_name');
-    }
+    // public function staffname()
+    // {
+    //     return $this->belongsTo(Staff::class, 'full_name');
+    // }
 }

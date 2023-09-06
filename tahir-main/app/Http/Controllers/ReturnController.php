@@ -40,8 +40,8 @@ class ReturnController extends Controller
 
     public function EditReturnProduct($id){
         $id = Returnsale::findOrfail($id);
-        $sale = Sale::get();
-        return view('return.edit_return',compact('sale','id'));
+        $data = Inventory::get();
+        return view('return.edit_return',compact('data','id'));
     }
 
     public function UpdateReturnProduct(Request $request){

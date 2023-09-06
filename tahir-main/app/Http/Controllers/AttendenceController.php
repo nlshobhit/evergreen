@@ -37,7 +37,8 @@ class AttendenceController extends Controller
 
     public function EditAttendence($id){
         $attendence_id = Attendence::findOrFail($id);
-        return view('attendence.edit_attendence',compact('attendence_id'));
+        $data = Staff::get();
+        return view('attendence.edit_attendence',compact('attendence_id','data'));
     }
 
     public function UpdateAttendence(Request $request){
