@@ -9,12 +9,23 @@ use App\Models\Returnsale;
 use App\Models\Sale;
 use App\Models\Store;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class ReturnController extends Controller
 {
     public function AllReturnProduct(){
-        $data = Returnsale::select('returnsales.*', 'stores.store_name as store_name')->leftJoin('stores','returnsales.store_id','stores.id')
+        $userData = Auth::user();
+        $storeId = $userData->store_id;
+        if($userData->role == 'admin'){
+         $data = Returnsale::select('returnsales.*', 'stores.store_name as store_name')
+         ->leftJoin('stores','returnsales.store_id','stores.id')
         ->get();
+        }else{
+        $data = Returnsale::select('returnsales.*', 'stores.store_name as store_name')
+        ->leftJoin('stores','returnsales.store_id','stores.id')
+        ->where('returnsales.store_id',$storeId)
+        ->get();
+        }
         return view('return.all_return',compact('data'));
     }
 
@@ -44,10 +55,13 @@ class ReturnController extends Controller
     }
 
     public function EditReturnProduct($id){
-        $id = Returnsale::findOrfail($id);
+        $returnData = Returnsale::select('returnsales.*','stores.store_name as store_name')
+         ->leftJoin('stores','returnsales.store_id','stores.id')
+         ->where('returnsales.id', $id)
+         ->first();
         $data = Inventory::get();
         $store = Store::get();
-        return view('return.edit_return',compact('data','id','store'));
+        return view('return.edit_return',compact('data','returnData','store'));
     }
 
     public function UpdateReturnProduct(Request $request){

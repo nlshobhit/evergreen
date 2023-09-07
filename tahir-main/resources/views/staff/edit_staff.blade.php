@@ -18,9 +18,10 @@
                         <label for="inputName" class="col-sm-3 col-form-label">Store Name</label>
                         <div class="col-sm-9">
                             <select class="form-select mb-3" aria-label="Default select example" value="{{$staff_id->store_id}}" name="store_id">
+                                <option selected value="">{{$staff_id->store_name}}</option>
                                 <option>Store Name</option>
                                 @foreach ($data as $item)
-                                <option selected value="{{$item->id}}">{{$item->store_name}}</option>
+                                <option value="{{$item->id}}">{{$item->store_name}}</option>
                                 @endforeach
                             </select>
                         </div>

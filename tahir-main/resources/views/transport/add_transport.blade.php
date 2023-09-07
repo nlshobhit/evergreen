@@ -45,20 +45,20 @@
                     <div class="row mb-3">
                         <label for="inputEnterYourName" class="col-sm-3 col-form-label">Select Transport Product</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" name="product_name" id="inputEnterYourName" placeholder="Enter Transport Product">
+                            <input type="text" class="form-control" name="product_name" id="inputEnterYourName" placeholder="Enter Transport Location">
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <label for="inputChoosePassword2" class="col-sm-3 col-form-label">Store Name</label>
-                        <div class="col-sm-9">
-                            <select class="form-select mb-3" aria-label="Default select example" name="store_id">
-                                <option selected="">Store Name</option>
-                                @foreach ($data as $item)
-                                <option value="{{$item->id}}">{{$item->store_name}}</option>
-                                @endforeach
-                            </select>
+                            <label for="inputName" class="col-sm-3 col-form-label">Store Name</label>
+                            <div class="col-sm-9">
+                                <select class="form-select mb-3" aria-label="Default select example" name="store_id">
+                                    <option selected="">Store Name</option>
+                                    @foreach ($data as $item)
+                                    <option value="{{$item->id}}">{{$item->store_name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
-                    </div>
                     <div class="row">
                         <label class="col-sm-3 col-form-label"></label>
                         <div class="col-sm-9">

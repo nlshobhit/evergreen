@@ -17,8 +17,4 @@ class Transport extends Model
         'product_name',
         'store_id'
     ];
-
-    public function sale(){
-        return $this->belongsTo(Sale::class,'product_id','id');
-    }
 }

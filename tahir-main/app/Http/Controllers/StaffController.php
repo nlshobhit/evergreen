@@ -7,12 +7,23 @@ use Illuminate\Http\Request;
 use App\Models\Staff;
 use App\Models\Store;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class StaffController extends Controller
 {
     public function AllStaff(){
-        $data = Staff::select('staff.*', 'stores.store_name as store_name')->leftJoin('stores','staff.store_id','stores.id')
+        $userData = Auth::user();
+        $storeId = $userData->store_id;
+        if($userData->role == 'admin'){
+        $data = Staff::select('staff.*', 'stores.store_name as store_name')
+        ->leftJoin('stores','staff.store_id','stores.id')
         ->get();
+        }else{
+        $data = Staff::select('staff.*', 'stores.store_name as store_name')
+        ->leftJoin('stores','staff.store_id','stores.id')
+        ->where('staff.store_id',$storeId)
+        ->get();
+        }
         return view('staff.all_staff',compact('data'));
     }
 
@@ -50,7 +61,10 @@ class StaffController extends Controller
     }
 
     public function EditStaff($id){
-        $staff_id = Staff::findOrFail($id);
+         $staff_id = Staff::select('staff.*','stores.store_name as store_name')
+         ->leftJoin('stores','staff.store_id','stores.id')
+         ->where('staff.id', $id)
+         ->first();
         $data=Store::get();
         return view('staff.edit_staff',compact('staff_id','data'));
     }

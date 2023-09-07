@@ -7,14 +7,27 @@ use Illuminate\Http\Request;
 use App\Models\Transport;
 use App\Models\Store;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class TransportController extends Controller
 {
     public function AllTransport(){
-        $data = Transport::select('transports.*', 'stores.store_name as store_name')->leftJoin('stores','transports.store_id','stores.id')
+         $userData = Auth::user();
+        $storeId = $userData->store_id;
+        if($userData->role == 'admin'){
+        $data = Transport::select('transports.*', 'stores.store_name as store_name')
+        ->leftJoin('stores','transports.store_id','stores.id')
         ->get();
+        }else{
+           $data=  Transport::select('transports.*', 'stores.store_name as store_name')
+            ->leftJoin('stores','transports.store_id','stores.id')
+            ->where('transports.store_id', $storeId)
+            ->get();
+        }
         return view('transport.all_transport',compact('data'));
     }
+
+
     public function AddTransport(){
         $data = Store::get();
         return view('transport.add_transport',compact('data'));
@@ -44,9 +57,12 @@ class TransportController extends Controller
     }
 
     public function EditTransport($id){
-        $id = Transport::findOrfail($id);
+        $transportData = Transport::select('transports.*','stores.store_name as store_name')
+         ->leftJoin('stores','transports.store_id','stores.id')
+         ->where('transports.id', $id)
+         ->first();
         $data = Store::get();
-        return view('transport.edit_transport',compact('id','data'));
+        return view('transport.edit_transport',compact('transportData','data'));
     }
 
     public function UpdateTransport(Request $request){

@@ -8,7 +8,7 @@
 	<!--favicon-->
 	<link rel="icon" href="{{asset('backend/assets/images/favicon-32x32.png')}}" type="image/png" />
 	@include('admin.body.links')
-	<title>Dashboard</title>
+	<title>Evergreen Furniture</title>
 </head>
 
 <body>

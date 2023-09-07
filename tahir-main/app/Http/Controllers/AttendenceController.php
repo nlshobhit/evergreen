@@ -8,12 +8,24 @@ use App\Models\Attendence;
 use App\Models\Staff;
 use App\Models\Store;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class AttendenceController extends Controller
 {
     public function AllAttendence(){
-        $data = Attendence::select('attendences.*', 'stores.store_name as store_name')->leftJoin('stores','attendences.store_id','stores.id')
+        $userData = Auth::user();
+        $storeId = $userData->store_id;
+        if($userData->role == 'admin'){
+        $data = Attendence::select('attendences.*', 'stores.store_name as store_name')
+        ->leftJoin('stores','attendences.store_id','stores.id')
         ->get();
+        }else{
+        $data = Attendence::select('attendences.*', 'stores.store_name as store_name')
+        ->leftJoin('stores','attendences.store_id','stores.id')
+        ->where('attendences.store_id',$storeId)
+        ->get();
+        }
+        
         return view('attendence.all_attendence',compact('data'));
     }
     public function AddAttendence(){
@@ -41,7 +53,10 @@ class AttendenceController extends Controller
     }
 
     public function EditAttendence($id){
-        $attendence_id = Attendence::findOrFail($id);
+         $attendence_id = Attendence::select('attendences.*','stores.store_name as store_name')
+         ->leftJoin('stores','attendences.store_id','stores.id')
+         ->where('attendences.id', $id)
+         ->first();
         $data = Staff::get();
         $store = Store::get();
         return view('attendence.edit_attendence',compact('attendence_id','data','store'));

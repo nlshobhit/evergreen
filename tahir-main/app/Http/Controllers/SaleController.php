@@ -10,6 +10,7 @@ use App\Models\Staff;
 use App\Models\Store;
 use Carbon\Carbon;
 use Throwable;
+use Illuminate\Support\Facades\Auth;
 
 class SaleController extends Controller
 {
@@ -23,8 +24,16 @@ class SaleController extends Controller
 
 
     public function AllSale(){
+        $userData = Auth::user();
+        $storeId = $userData->store_id;
+        if($userData->role == 'admin'){
         $data = Sale::select('sales.*', 'stores.store_name as store_name')->leftJoin('stores','sales.store_id','stores.id')
         ->get();
+        }else{
+        $data = Sale::select('sales.*', 'stores.store_name as store_name')
+        ->leftJoin('stores','sales.store_id','stores.id')
+        ->where('sales.store_id',$storeId );
+        }
         return view('sale.all_sale',compact('data'));
     }
 
@@ -106,7 +115,10 @@ class SaleController extends Controller
         }
 
     public function EditSale($id){
-        $sale_id = Sale::findOrFail($id);
+        $sale_id = Sale::select('sales.*','stores.store_name as store_name')
+         ->leftJoin('stores','sales.store_id','stores.id')
+         ->where('sales.id', $id)
+         ->first();
         $staff = Staff::get();
         $data = Store::get();
         return view('sale.edit_sale',compact('sale_id','staff','data'));

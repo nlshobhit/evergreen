@@ -7,12 +7,22 @@ use Illuminate\Http\Request;
 use App\Models\Expense;
 use App\Models\Store;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class ExpenseController extends Controller
 {
     public function AllExpense(){
+        $userData = Auth::user();
+        $storeId = $userData->store_id;
+        if($userData->role == 'admin'){
         $data = Expense::select('expenses.*', 'stores.store_name as store_name')->leftJoin('stores','expenses.store_id','stores.id')
         ->get();
+        }else{
+        $data = Expense::select('expenses.*', 'stores.store_name as store_name')
+        ->leftJoin('stores','expenses.store_id','stores.id')
+        ->where('expenses.store_id',$storeId)
+        ->get();
+        }
         return view('expense.all_expense',compact('data'));
     }
 
@@ -39,9 +49,12 @@ class ExpenseController extends Controller
     }
 
     public function EditExpense($id){
-        $id = Expense::findOrfail($id);
+        $expenseData = Expense::select('expenses.*','stores.store_name as store_name')
+         ->leftJoin('stores','expenses.store_id','stores.id')
+         ->where('expenses.id', $id)
+         ->first();
         $data = Store::get();
-        return view('expense.edit_expense',compact('id','data'));
+        return view('expense.edit_expense',compact('expenseData','data'));
     }
 
     public function UpdateExpense(Request $request){

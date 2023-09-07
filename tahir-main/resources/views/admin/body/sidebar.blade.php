@@ -10,6 +10,9 @@
         </div>
     </div>
     <!--navigation-->
+
+    <?php $userData = Auth::user();?>
+    
     <ul class="metismenu" id="menu">
         <li>
             <a href="{{route('dashboard')}}">
@@ -114,15 +117,18 @@
                 </li>
                 <li> <a href="{{route('all.staff')}}"><i class="bx bx-right-arrow-alt"></i>Check And Edit Staff</a>
                 </li>
+                 @if($userData->role == 'admin')
                 <li> <a href="{{route('all.register')}}"><i class="bx bx-right-arrow-alt"></i>Create Staff Login</a>
                 </li>
+                @endif
             </ul>
-        </li>
-
+        </li>   
+                @if($userData->role == 'admin')
         <li>
             <a class="has-arrow" href="javascript:;">
                 <div class="parent-icon"> <i class="bx bx-user"></i>
                 </div>
+
                 <div class="menu-title">Vendor</div>
             </a>
             <ul>
@@ -136,7 +142,7 @@
                 </li>
             </ul>
         </li>
-
+           
         <li>
             <a class="has-arrow" href="javascript:;">
                 <div class="parent-icon"> <i class="bx bx-store"></i>
@@ -172,7 +178,7 @@
                 </li>
             </ul>
         </li>
-
+ @endif
 
         {{-- <li>
             <a class="has-arrow" href="javascript:;">

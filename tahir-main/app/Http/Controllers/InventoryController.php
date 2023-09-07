@@ -9,17 +9,22 @@ use App\Models\Store;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use DB;
 
 class InventoryController extends Controller
 {
     public function AllInventory(){
-        $id = Auth::user()->id;
-        $data = User::find($id);
-        $storeId= $data->store_id;
+        $userData = Auth::user();
+        $storeId = $userData->store_id;
+        if($userData->role == 'admin'){
+         $data = Inventory::select('inventories.*','stores.store_name as store_name')
+         ->leftJoin('stores','inventories.store_id','stores.id')->get();
+        }else{
         $data = Inventory::select('inventories.*', 'stores.store_name as store_name')
         ->leftJoin('stores','inventories.store_id','stores.id')
         ->where('inventories.store_id', $storeId)
         ->get();
+        }
         return view('inventory.all_inventory',compact('data'));
     }
 
@@ -57,7 +62,10 @@ class InventoryController extends Controller
     }
 
     public function EditInventory($id){
-        $inventory_id = Inventory::findOrFail($id);
+        $inventory_id = Inventory::select('inventories.*','stores.store_name as store_name')
+         ->leftJoin('stores','inventories.store_id','stores.id')
+         ->where('inventories.id', $id)
+         ->first();
         $data = Store::get();
         return view('inventory.edit_inventory',compact('inventory_id','data'));
     }

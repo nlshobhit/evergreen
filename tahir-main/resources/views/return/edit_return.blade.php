@@ -13,7 +13,7 @@
                     <hr/>
                     <form action="{{route('update.return.product')}}" method="POST">
                         @csrf
-                        <input type="hidden" name="id" value="{{$id->id}}">
+                        <input type="hidden" name="id" value="{{$returnData->id}}">
                         <div class="row mb-3">
                             <label for="inputConfirmPassword2" class="col-sm-3 col-form-label">Select Return Product</label>
                             <div class="col-md-9">
@@ -28,26 +28,27 @@
                         <div class="row mb-3">
                             <label for="inputConfirmPassword2" class="col-sm-3 col-form-label">Return Amount</label>
                             <div class="col-sm-9">
-                                <input  type="number" step="0.01" class="form-control" name="return_amount" value="{{$id->return_amount}}" id="inputConfirmPassword2" placeholder="Enter Transport Amount">
+                                <input  type="number" step="0.01" class="form-control" name="return_amount" value="{{$returnData->return_amount}}" id="inputConfirmPassword2" placeholder="Enter Transport Amount">
                             </div>
                         </div>
                     <div class="row mb-3">
                         <label for="inputEnterYourName" class="col-sm-3 col-form-label">Return Reason</label>
                         <div class="col-sm-9">
-                            <textarea class="form-control" id="inputAddress4" name="return_reason" rows="3" placeholder="Describe The Reason">{{$id->return_reason}}</textarea>
+                            <textarea class="form-control" id="inputAddress4" name="return_reason" rows="3" placeholder="Describe The Reason">{{$returnData->return_reason}}</textarea>
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="inputEnterYourName" class="col-sm-3 col-form-label">Return Date</label>
                         <div class="col-sm-9">
-                        <input type="date" class="form-control" name="return_date" value="{{$id->return_date}}">
+                        <input type="date" class="form-control" name="return_date" value="{{$returnData->return_date}}">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="inputName" class="col-sm-3 col-form-label">Store Name</label>
                         <div class="col-sm-9">
-                            <select class="form-select mb-3" aria-label="Default select example" value="{{$id->store_id}}" name="store_id">
-                                <option selected="">Store Name</option>
+                            <select class="form-select mb-3" aria-label="Default select example" value="{{$returnData->store_id}}" name="store_id">
+                                <option selected value="">{{$returnData->store_name}}</option>
+                                <option >Store Name</option>
                                 @foreach ($store as $item)
                                 <option value="{{$item->id}}">{{$item->store_name}}</option>
                                 @endforeach
