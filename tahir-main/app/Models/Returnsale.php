@@ -13,6 +13,7 @@ class Returnsale extends Model
         'product_name',
         'return_amount',
         'return_reason',
-        'return_date'
+        'return_date',
+        'store_id'
     ];
 }

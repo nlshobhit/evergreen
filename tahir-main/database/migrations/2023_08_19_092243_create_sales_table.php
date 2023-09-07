@@ -27,6 +27,7 @@ return new class extends Migration
             $table->json('full_name')->nullable();
             $table->json('add_incentive')->nullable();
             $table->json('percentage')->nullable();
+            $table->integer('store_id');
             $table->timestamps();
         });
     }

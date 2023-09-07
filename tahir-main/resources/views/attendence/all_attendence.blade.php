@@ -12,6 +12,7 @@
 										<th>Emplyoee Name</th>
 										<th>Attendence</th>
                                         <th>Date</th>
+                                        <th>Store Name</th>
                                         <th>Action</th>
 									</tr>
 								</thead>
@@ -22,6 +23,7 @@
                                       <td>{{$item->full_name}}</td>
                                       <td>{{$item->attendence}}</td>
                                       <td>{{$item->attendence_date}}</td>
+                                      <td>{{$item->store_name}}</td>
                                       <td>
 
 

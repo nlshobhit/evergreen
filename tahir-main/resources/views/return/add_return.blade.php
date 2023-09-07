@@ -42,10 +42,21 @@
                         <input type="date" class="form-control" name="return_date">
                         </div>
                     </div>
+                    <div class="row mb-3">
+                        <label for="inputName" class="col-sm-3 col-form-label">Store Name</label>
+                        <div class="col-sm-9">
+                            <select class="form-select mb-3" aria-label="Default select example" name="store_id">
+                                <option selected="">Store Name</option>
+                                @foreach ($store as $item)
+                                <option value="{{$item->id}}">{{$item->store_name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
                     <div class="row">
                         <label class="col-sm-3 col-form-label"></label>
                         <div class="col-sm-9">
-                            <button type="submit" class="btn btn-danger px-5">Return Product</button>
+                            <button type="submit" class="btn btn-danger px-5">Add Return Product</button>
                         </div>
                     </div>
                     </form>

@@ -12,7 +12,8 @@ class Attendence extends Model
     protected $fillable = [
         'full_name',
         'attendence',
-        'attendence_date'
+        'attendence_date',
+        'store_id'
     ];
 
     // public function staffname()

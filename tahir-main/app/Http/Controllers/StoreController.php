@@ -22,7 +22,7 @@ class StoreController extends Controller
         $request->validate([
             'store_name' => 'required',
             'address' => 'required',
-            'mobile_number' => ['required','string','max:11'],
+            'mobile_number' => ['required','string','max:10'],
             'manager_name' => 'required',
         ]);
          Store::insert([

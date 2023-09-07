@@ -17,11 +17,10 @@
                         <div class="row mb-3">
                             <label for="inputEnterYourName" class="col-sm-3 col-form-label">Select Enplyoee</label>
                             <div class="col-md-9">
-                                {{-- <input type="text" class="form-control" value="{{$attendence_id->full_name}}" name="full_name"> --}}
                                 <select class="form-select mb-3" aria-label="Default select example" value="{{$attendence_id->full_name}}" name="full_name">
                                     <option selected="">Staff Name</option>
                                     @foreach ($data as $item)
-                                    <option value="{{$item->id}}">{{$item->full_name}}</option>
+                                    <option value="{{$item->full_name}}">{{$item->full_name}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -32,8 +31,8 @@
                             <div class="col-sm-9">
                                 <select class="form-select form-select-sm" value="{{$attendence_id->attendence}}" aria-label=".form-select-sm example" name="attendence">
                                     <option selected>Attendence</option>
-                                    <option value="1">Present</option>
-                                    <option value="2">Absent</option>
+                                    <option value="Present">Present</option>
+                                    <option value="Absent">Absent</option>
                                   </select>
                             </div>
                         </div>
@@ -41,6 +40,17 @@
                         <label for="inputEnterYourName" class="col-sm-3 col-form-label">Attendence Date</label>
                         <div class="col-sm-9">
                         <input type="date" class="form-control" value="{{$attendence_id->attendence_date}}" name="attendence_date">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="inputName" class="col-sm-3 col-form-label">Store Name</label>
+                        <div class="col-sm-9">
+                            <select class="form-select mb-3" aria-label="Default select example" value="{{$attendence_id->store_id}}" name="store_id">
+                                <option>Store Name</option>
+                                @foreach ($store as $item)
+                                <option selected value="{{$item->id}}">{{$item->store_name}}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                     <div class="row">

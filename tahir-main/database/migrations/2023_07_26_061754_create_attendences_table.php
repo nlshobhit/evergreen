@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('full_name');
             $table->string('attendence');
             $table->date('attendence_date');
+            $table->integer('store_id');
             $table->timestamps();
         });
     }

@@ -5,18 +5,19 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Transport;
-use App\Models\Inventory;
+use App\Models\Store;
 use Carbon\Carbon;
 
 class TransportController extends Controller
 {
     public function AllTransport(){
-        $data = Transport::all();
+        $data = Transport::select('transports.*', 'stores.store_name as store_name')->leftJoin('stores','transports.store_id','stores.id')
+        ->get();
         return view('transport.all_transport',compact('data'));
     }
     public function AddTransport(){
-        $product = Inventory::get();
-        return view('transport.add_transport',compact('product'));
+        $data = Store::get();
+        return view('transport.add_transport',compact('data'));
     }
 
     public function StoreTransport(Request $request){
@@ -25,7 +26,8 @@ class TransportController extends Controller
             'transport_amount' => 'required|numeric',
             'transport_location' => 'required|string',
             'date' => 'required|date',
-            'product_name' => 'required'
+            'product_name' => 'required',
+            'store_id' => 'required'
         ]);
 
         Transport::insert([
@@ -34,6 +36,7 @@ class TransportController extends Controller
             'transport_location' => $request->transport_location,
             'date' => $request->date,
             'product_name' => $request->product_name,
+            'store_id' => $request->store_id,
             'created_at' => Carbon::now()
         ]);
 
@@ -42,8 +45,8 @@ class TransportController extends Controller
 
     public function EditTransport($id){
         $id = Transport::findOrfail($id);
-        $product = Inventory::get();
-        return view('transport.edit_transport',compact('id','product'));
+        $data = Store::get();
+        return view('transport.edit_transport',compact('id','data'));
     }
 
     public function UpdateTransport(Request $request){
@@ -54,6 +57,7 @@ class TransportController extends Controller
             'transport_location' => $request->transport_location,
             'date' => $request->date,
             'product_name' => $request->product_name,
+            'store_id' => $request->store_id,
             'updated_at' => Carbon::now()
         ]);
         return redirect()->route('all.transport');

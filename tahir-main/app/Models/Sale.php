@@ -25,7 +25,8 @@ class Sale extends Model
         'pending_payment',
         'full_name',
         'add_incentive',
-        'percentage'
+        'percentage',
+        'store_id'
     ];
 
     protected $casts = [

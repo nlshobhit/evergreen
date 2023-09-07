@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('transport_location');
             $table->date('date');
             $table->integer('product_id');
+            $table->integer('store_id');
             $table->timestamps();
         });
     }

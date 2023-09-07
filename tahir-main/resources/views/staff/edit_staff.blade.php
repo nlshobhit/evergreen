@@ -17,10 +17,10 @@
                     <div class="row mb-3">
                         <label for="inputName" class="col-sm-3 col-form-label">Store Name</label>
                         <div class="col-sm-9">
-                            <select class="form-select mb-3" aria-label="Default select example" value="{{$staff_id->store_name}}" name="store_name">
-                                <option selected="">Store Name</option>
+                            <select class="form-select mb-3" aria-label="Default select example" value="{{$staff_id->store_id}}" name="store_id">
+                                <option>Store Name</option>
                                 @foreach ($data as $item)
-                                <option value="{{$item->id}}">{{$item->store_name}}</option>
+                                <option selected value="{{$item->id}}">{{$item->store_name}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -40,7 +40,7 @@
                     <div class="row mb-3">
                         <label for="inputdate" class="col-sm-3 col-form-label">Date of Joining</label>
                         <div class="col-sm-9">
-                            <input type="date" class="form-control" name="mdate_of_joining" id="inputdate" value="{{$staff_id->date_of_joining}}" placeholder="Date">
+                            <input type="date" class="form-control" name="date_of_joining" id="inputdate" value="{{$staff_id->date_of_joining}}" placeholder="Date">
                         </div>
                     </div>
                     <div class="row mb-3">

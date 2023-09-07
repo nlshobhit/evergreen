@@ -23,6 +23,7 @@
                                         <th>Seller Name</th>
                                         <th>Add Incentive (%)</th>
                                         <th>Percentage Amount</th>
+                                        <th>Store Name</th>
                                         <th>Action</th>
 									</tr>
 								</thead>
@@ -44,6 +45,7 @@
                                             <td>{{ ltrim(implode(', ', $item->full_name), ', ') }}</td>
                                             <td>{{ ltrim(implode(', ', $item->add_incentive), ', ') }}</td>
                                             <td>{{ ltrim(implode(', ', $item->percentage), ', ') }}</td>
+                                            <td>{{ $item->store_name}}</td>
                                             <td>
                                         <a href="{{route('edit.sale',$item->id)}}" class="btn btn-secondary">Edit</a>
                                         <a href="{{route('delete.sale',$item->id)}}" class="btn btn-danger">Delete</a>

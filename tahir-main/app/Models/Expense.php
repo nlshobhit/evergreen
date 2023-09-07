@@ -12,6 +12,7 @@ class Expense extends Model
     protected $fillable = [
         'expense_type',
         'expense_amount',
-        'date'
+        'date',
+        'store_id'
     ];
 }

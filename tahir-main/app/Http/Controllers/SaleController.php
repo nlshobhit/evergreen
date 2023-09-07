@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Inventory;
 use Illuminate\Http\Request;
 use App\Models\Sale;
 use App\Models\Staff;
+use App\Models\Store;
 use Carbon\Carbon;
 use Throwable;
 
@@ -14,12 +16,15 @@ class SaleController extends Controller
 
     public function AddSale(){
         $staff = Staff::get();
-        return view('sale.add_sale', compact('staff'));
+        $data = Store::get();
+        $product = Inventory::get();
+        return view('sale.add_sale', compact('staff','data','product'));
     }
 
 
     public function AllSale(){
-        $data = Sale::get();
+        $data = Sale::select('sales.*', 'stores.store_name as store_name')->leftJoin('stores','sales.store_id','stores.id')
+        ->get();
         return view('sale.all_sale',compact('data'));
     }
 
@@ -27,7 +32,7 @@ class SaleController extends Controller
       try{
         $request->validate([
         'customer_name' => 'required',
-        'customer_number' => ['required','string','max:11'],
+        'customer_number' => ['required','string','max:10'],
         'customer_location' => 'required',
         'product_name' => 'required',
         'no_of_pieces' => 'required',
@@ -40,6 +45,7 @@ class SaleController extends Controller
         'full_name' => 'required',
         'add_incentive' => 'required',
         'percentage' => 'required',
+        'store_id' => 'required'
         ]);
 
         $product = [];
@@ -88,6 +94,7 @@ class SaleController extends Controller
             'full_name' => json_encode($name),
             'add_incentive' => json_encode($add),
             'percentage' => json_encode($per),
+            'store_id' => $request->store_id,
             'created_at' => now(),
         ]);
     }
@@ -101,7 +108,8 @@ class SaleController extends Controller
     public function EditSale($id){
         $sale_id = Sale::findOrFail($id);
         $staff = Staff::get();
-        return view('sale.edit_sale',compact('sale_id','staff'));
+        $data = Store::get();
+        return view('sale.edit_sale',compact('sale_id','staff','data'));
     }
 
     public function UpdateSale(Request $request){
@@ -122,6 +130,7 @@ class SaleController extends Controller
             'full_name' => $request->full_name,
             'add_incentive' => $request->add_incentive,
             'percentage' => $request->percentage,
+            'store_id' => $request->store_id,
             'updated_at'=> Carbon::now()
          ]);
 

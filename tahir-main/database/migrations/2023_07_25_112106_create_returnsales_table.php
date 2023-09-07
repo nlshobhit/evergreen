@@ -17,6 +17,7 @@ return new class extends Migration
             $table->decimal('return_amount', 10, 2);
             $table->string('return_reason');
             $table->date('return_date');
+            $table->integer('store_id');
             $table->timestamps();
         });
     }

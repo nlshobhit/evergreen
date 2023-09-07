@@ -7,18 +7,21 @@ use App\Models\Inventory;
 use Illuminate\Http\Request;
 use App\Models\Returnsale;
 use App\Models\Sale;
+use App\Models\Store;
 use Carbon\Carbon;
 
 class ReturnController extends Controller
 {
     public function AllReturnProduct(){
-        $data = Returnsale::get();
+        $data = Returnsale::select('returnsales.*', 'stores.store_name as store_name')->leftJoin('stores','returnsales.store_id','stores.id')
+        ->get();
         return view('return.all_return',compact('data'));
     }
 
     public function AddReturnProduct(){
         $data = Inventory::get();
-        return view('return.add_return',compact('data'));
+        $store = Store::get();
+        return view('return.add_return',compact('data','store'));
     }
 
     public function StoreReturnProduct(Request $request){
@@ -26,13 +29,15 @@ class ReturnController extends Controller
             'product_name' => 'required',
             'return_amount' => 'required',
             'return_reason' => 'required',
-            'return_date' =>'required'
+            'return_date' =>'required',
+            'store_id' => 'required'
         ]);
         Returnsale::insert([
             'product_name' => $request->product_name,
             'return_amount' => $request->return_amount,
             'return_reason' => $request->return_reason,
             'return_date' => $request->return_date,
+            'store_id' => $request->store_id,
             'created_at' => Carbon::now()
         ]);
         return redirect()->route('all.return.product');
@@ -41,7 +46,8 @@ class ReturnController extends Controller
     public function EditReturnProduct($id){
         $id = Returnsale::findOrfail($id);
         $data = Inventory::get();
-        return view('return.edit_return',compact('data','id'));
+        $store = Store::get();
+        return view('return.edit_return',compact('data','id','store'));
     }
 
     public function UpdateReturnProduct(Request $request){
@@ -51,6 +57,7 @@ class ReturnController extends Controller
             'return_amount' => $request->return_amount,
             'return_reason' => $request->return_reason,
             'return_date' => $request->return_date,
+            'store_id' => $request->store_id,
             'updated_at' => Carbon::now()
         ]);
         return redirect()->route('all.return.product');

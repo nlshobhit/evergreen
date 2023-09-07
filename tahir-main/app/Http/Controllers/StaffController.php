@@ -23,18 +23,17 @@ class StaffController extends Controller
 
     public function StoreStaff(Request $request){
         $request->validate([
-            'store_name' => 'required',
+            'store_id' => 'required',
             'full_name' => 'required',
             'department' => 'required',
             'date_of_joining' => 'required',
-            'mobile_number' => ['required','string','max:11'],
+            'mobile_number' => ['required','string','max:10'],
             'address' => 'required',
             'salary' => 'required',
             'shift_timing' => 'required',
             'add_incentive' => 'required'
         ]);
          Staff::insert([
-            'store_name' => $request->store_name,
             'full_name' => $request->full_name,
             'department' => $request->department,
             'date_of_joining' => $request->date_of_joining,
@@ -43,7 +42,8 @@ class StaffController extends Controller
             'salary' => $request->salary,
             'shift_timing' => $request->shift_timing,
             'add_incentive' =>$request->add_incentive,
-            'created_at' => Carbon::now()
+            'created_at' => Carbon::now(),
+            'store_id' => $request->store_id
          ]);
 
          return redirect()->route('all.staff');
@@ -59,7 +59,7 @@ class StaffController extends Controller
         $staff_id = $request->id;
 
         Staff::findOrFail($staff_id)->update([
-            'store_name' => $request->store_name,
+            'store_id' => $request->store_id,
             'full_name' => $request->full_name,
             'department' => $request->department,
             'date_of_joining' => $request->date_of_joining,

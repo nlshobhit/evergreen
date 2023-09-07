@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('expense_type');
             $table->decimal('expense_amount', 10, 2);
             $table->date('date');
+            $table->integer('store_id');
             $table->timestamps();
         });
     }

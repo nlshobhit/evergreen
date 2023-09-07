@@ -13,6 +13,7 @@
 										<th>Return Amount</th>
 										<th>Return Reason</th>
                                         <th>Return Date</th>
+                                        <th>Store Name</th>
                                         <th>Action</th>
 									</tr>
 								</thead>
@@ -24,6 +25,7 @@
 										<td>{{$item->return_amount}}</td>
 										<td>{{$item->return_reason}}</td>
 										<td>{{\Carbon\Carbon::parse($item->return_date)->format('d F, Y')}}</td>
+                                        <td>{{$item->store_name}}</td>
                                         <td>
                                             <a href="{{route('edit.return.product',$item->id)}}" class="btn btn-secondary">Edit</a>
                                             <a href="{{route('delete.return.product',$item->id)}}" class="btn btn-danger">Delete</a>

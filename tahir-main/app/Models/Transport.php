@@ -14,7 +14,8 @@ class Transport extends Model
         'transport_amount',
         'transport_location',
         'date',
-        'product_name'
+        'product_name',
+        'store_id'
     ];
 
     public function sale(){
