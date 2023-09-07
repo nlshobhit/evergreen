@@ -10,6 +10,11 @@ use Carbon\Carbon;
 
 class PercentageController extends Controller
 {
+    public function AllPercentage(){
+        $data = Percentage::get();
+        return view('percentage.all_percentage',compact('data'));
+    }
+
     public function AddPercentage(){
         $product = Inventory::get();
         return view('percentage.add_percentage',compact('product'));
@@ -28,6 +33,6 @@ class PercentageController extends Controller
             'created_at' => Carbon::now()
         ]);
 
-        return redirect()->back();
+        return redirect()->route('all_percentage');
     }
 }

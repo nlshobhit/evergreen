@@ -12,7 +12,7 @@
     <!--navigation-->
 
     <?php $userData = Auth::user();?>
-    
+
     <ul class="metismenu" id="menu">
         <li>
             <a href="{{route('dashboard')}}">
@@ -122,7 +122,7 @@
                 </li>
                 @endif
             </ul>
-        </li>   
+        </li>
                 @if($userData->role == 'admin')
         <li>
             <a class="has-arrow" href="javascript:;">
@@ -142,7 +142,7 @@
                 </li>
             </ul>
         </li>
-           
+
         <li>
             <a class="has-arrow" href="javascript:;">
                 <div class="parent-icon"> <i class="bx bx-store"></i>
@@ -170,7 +170,7 @@
                 </li>
                 <li> <a href="{{route('all.transport')}}"><i class="bx bx-right-arrow-alt"></i>Transport</a>
                 </li>
-                <li> <a href="#"><i class="bx bx-right-arrow-alt"></i>Incentive</a>
+                <li> <a href="{{route('all.percentage')}}"><i class="bx bx-right-arrow-alt"></i>Incentive</a>
                 </li>
                 <li> <a href="{{route('all.attendence')}}"><i class="bx bx-right-arrow-alt"></i>Attendence</a>
                 </li>

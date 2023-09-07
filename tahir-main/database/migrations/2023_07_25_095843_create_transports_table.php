@@ -19,6 +19,7 @@ return new class extends Migration
             $table->date('date');
             $table->integer('product_id');
             $table->integer('store_id');
+            $table->string('vehicle_no');
             $table->timestamps();
         });
     }

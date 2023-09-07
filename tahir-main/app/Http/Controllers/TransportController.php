@@ -40,7 +40,8 @@ class TransportController extends Controller
             'transport_location' => 'required|string',
             'date' => 'required|date',
             'product_name' => 'required',
-            'store_id' => 'required'
+            'store_id' => 'required',
+            'vehicle_no' => 'required'
         ]);
 
         Transport::insert([
@@ -50,6 +51,7 @@ class TransportController extends Controller
             'date' => $request->date,
             'product_name' => $request->product_name,
             'store_id' => $request->store_id,
+            'vehicle_no' => $request->vehicle_no,
             'created_at' => Carbon::now()
         ]);
 
@@ -74,6 +76,7 @@ class TransportController extends Controller
             'date' => $request->date,
             'product_name' => $request->product_name,
             'store_id' => $request->store_id,
+            'vehicle_no' => $request->vehicle_no,
             'updated_at' => Carbon::now()
         ]);
         return redirect()->route('all.transport');

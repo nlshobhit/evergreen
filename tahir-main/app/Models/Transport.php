@@ -15,6 +15,7 @@ class Transport extends Model
         'transport_location',
         'date',
         'product_name',
-        'store_id'
+        'store_id',
+        'vehicle_no'
     ];
 }

@@ -62,6 +62,12 @@
                             </select>
                         </div>
                     </div>
+                    <div class="row mb-3">
+                        <label for="inputNumber" class="col-sm-3 col-form-label">Vehicle Number</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="vehicle_no" id="inputNumber" value="{{$transportData->vehicle_no}}" placeholder="Enter Vehicle Number">
+                        </div>
+                    </div>
                     <div class="row">
                         <label class="col-sm-3 col-form-label"></label>
                         <div class="col-sm-9">

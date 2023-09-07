@@ -55,6 +55,7 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::controller(PercentageController::class)->group(function(){
+        Route::get('/all/percentage','AllPercentage')->name('all.percentage');
         Route::get('/add/percentage','AddPercentage')->name('add.percentage');
         Route::post('/store/percentage','StorePercentage')->name('store.percentage');
     });

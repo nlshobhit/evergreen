@@ -15,6 +15,7 @@
 										<th>Transport Date</th>
                                         <th>Select Transport Product</th>
                                         <th>Store Name</th>
+                                        <th>Vehicle Number</th>
                                         <th>Action</th>
 									</tr>
 								</thead>
@@ -28,6 +29,7 @@
                                         <td>{{$item->date}}
                                         <td>{{$item->product_name}}</td>
                                         <td>{{$item->store_name}}</td>
+                                        <td>{{$item->vehicle_no}}</td>
                                         <td>
                                             <a href="{{route('edit.transport',$item->id)}}" class="btn btn-secondary">Edit</a>
                                             <a href="{{route('delete.transport',$item->id)}}" class="btn btn-danger">Delete</a>
