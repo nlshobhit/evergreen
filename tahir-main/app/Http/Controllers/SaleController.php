@@ -127,6 +127,37 @@ class SaleController extends Controller
     public function UpdateSale(Request $request){
         $sale_id = $request->id;
 
+        // $product = [];
+        // $pieces = [];
+        // $price = [];
+        // $name = [];
+        // $add = [];
+        // $per = [];
+
+        // foreach ($request->product_name as $product_name) {
+        //     $product[] = $product_name;
+        // }
+
+        // foreach ($request->no_of_pieces as $no_of_pieces) {
+        //     $pieces[] = $no_of_pieces;
+        // }
+
+        // foreach ($request->cost as $cost) {
+        //     $price[] = $cost;
+        // }
+
+        // foreach ($request->full_name as $full_name) {
+        //     $name[] = $full_name;
+        // }
+
+        // foreach ($request->add_incentive as $add_incentive) {
+        //     $add[] = $add_incentive;
+        // }
+
+        // foreach ($request->percentage as $percentage) {
+        //     $per[] = $percentage;
+        // }
+
         Sale::findOrFail($sale_id)->update([
             'customer_name' => $request->customer_name,
             'customer_number' => $request->customer_number,
